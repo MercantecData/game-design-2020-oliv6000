@@ -5,7 +5,6 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float speed = 10;
-    public float speed2 = 5f;
 
     private Rigidbody2D rigidbody;
     // Start is called before the first frame update
@@ -29,22 +28,11 @@ public class Movement : MonoBehaviour
         rigidbody.MovePosition(position);
 
 
-        Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed2 * Time.deltaTime);
+        var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
 
-
-        if (Input.GetKey("w") || Input.GetKey("up"))
-        {
-            print("UP");
-        }
-
-        if (Input.GetKey("s") || Input.GetKey("down"))
-        {
-            print("DOWN");
-        }
 
 
 
