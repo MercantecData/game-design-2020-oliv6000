@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/StartMenu.unity
+    guid: acbaae170fce29a4cba401a666b41401
+  - enabled: 1
+    path: Assets/TheGame.unity
+    guid: 6167e48b6b0d6724886f38d6873618ec
+  - enabled: 1
+    path: Assets/DyingMenu.unity
+    guid: 72d952a63c096544289cee243650f4bf
+  - enabled: 1
+    path: Assets/VictoryMenu.unity
+    guid: 8fe3cfa988329464792591905e5d4153
   m_configObjects: {}
