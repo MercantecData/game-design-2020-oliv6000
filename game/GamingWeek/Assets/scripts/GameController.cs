@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
         // This is for showing the amount of remaining bullets in the gun
         string bulletsGun = BulletsInGun.text;
         Bullets = float.Parse(bulletsGun);
-        BulletPlaceholder.GetComponent<Text>().text = "Bullets: " + Bullets;
+        BulletPlaceholder.GetComponent<Text>().text = Bullets.ToString();
 
         // This is for showing the players hp
         playerHP = PlayerStartHP.text;
@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && Bullets > 0)
         {
             Bullets -= 1;
-            BulletPlaceholder.GetComponent<Text>().text = "Bullets: " + Bullets.ToString();
+            BulletPlaceholder.GetComponent<Text>().text = Bullets.ToString();
             Health -= 10;
 
         }
