@@ -16,16 +16,7 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 2f);
+        Destroy(effect, 1.8f);
         Destroy(gameObject);
-
-
-        if (other.CompareTag("Enemy"))
-        {
-
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-
-        }
     }
 }

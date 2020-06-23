@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 {
 
     public GameObject Player;
-    public Text PlayerStartHP;
+    public Text PlayerHP;
 
     public Text BulletsInGun;
 
@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
         BulletPlaceholder.GetComponent<Text>().text = Bullets.ToString();
 
         // This is for showing the players hp
-        playerHP = PlayerStartHP.text;
+        playerHP = PlayerHP.text;
         Health = float.Parse(playerHP);
         HealthPlaceholder.GetComponent<Text>().text = "" + Health;
     }

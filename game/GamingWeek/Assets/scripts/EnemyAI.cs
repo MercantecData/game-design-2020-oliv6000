@@ -1,20 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
     
         private string currentState = "Patrol";
 
+        public float health = 5;
+        public float damage = 5;
+        public float moveSpeed = 5f;
 
         public float patrolSpeed = 5;
         public float attackSpeed = 8;
-
         public float range = 15;
+
 
         public LayerMask mask;
 
+        public Text BulletDamage;
         public Transform waypoint1;
         public Transform waypoint2;
 
@@ -23,14 +29,17 @@ public class EnemyAI : MonoBehaviour
 
     //Video controll
     public Transform player;
-    public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
+    private float bulletDMG;
 
     
     // Start is called before the first frame update
     void Start()
     {
+        string BulletDMG = BulletDamage.text;
+        bulletDMG = float.Parse(BulletDMG);
+
         nextWaypoint = waypoint1;
         rb = this.GetComponent<Rigidbody2D>();
     }
@@ -38,11 +47,10 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Vector3 direction = player.position - transform.position;
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //rb.rotation = angle;
-        //direction.Normalize();
-        //movement = direction;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
 
         AquireTarget();
 
@@ -52,15 +60,23 @@ public class EnemyAI : MonoBehaviour
         }
         
     }
-    
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        print("hmmmmm");
+        if (other.CompareTag("Player"))
+            {
+            print("You are hitting the player at the moment");
+        }
+
+        if (other.CompareTag("Bullet"))
+        {
+            health -= bulletDMG;
+        }
+    }
+
     bool patrol()
     {
-
-        //Vector3 rot = transform.eulerAngles;
-        //rot.z = nextWaypoint.transform.eulerAngles.z;
-        //transform.eulerAngles = rot;
-        //print("hmmmmm");
-
         Vector3 nextPosition = Vector3.MoveTowards(transform.position, nextWaypoint.position, Time.deltaTime * patrolSpeed);
         transform.position = nextPosition;
 
@@ -99,7 +115,7 @@ public class EnemyAI : MonoBehaviour
             tooClose = false;
         }
 
-        if (Vector3.Distance(targetLocation, transform.position) < 1.2)
+        if (Vector3.Distance(targetLocation, transform.position) < 0.9)
         {
             tooClose = true;
         }
