@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
+using JetBrains.Annotations;
 
 public class SceneManager : MonoBehaviour
 {
     public Text PlayerHP;
     public Text EnemiesCount;
+    public Text VictoryText;
+    public Text AditionalVictoryText;
+    public bool Quit;
 
     private float Health;
     private float Enemies;
@@ -26,15 +31,28 @@ public class SceneManager : MonoBehaviour
         string CountEnemies = EnemiesCount.text;
         Enemies = float.Parse(CountEnemies);
 
+        if(Enemies <= 0)
+        {
+            VictoryText.text = "Victory";
+            AditionalVictoryText.text = "Press enter to continue";
+        }
+
+        if (Input.GetKeyDown("return") && Enemies <= 0)
+        {
+            print("Enter pressed");
+            Quit = true;
+        }
+
+        if (Enemies <= 0 && Quit == true)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryMenu");
+        }
+
         if (Health <= 0)
         {
             //SceneManager.LoadScene("1");
 
             UnityEngine.SceneManagement.SceneManager.LoadScene("DyingMenu");
-        }
-        else if (Enemies <= 0)
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryMenu");
         }
     }
 }

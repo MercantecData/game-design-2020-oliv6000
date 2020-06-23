@@ -63,15 +63,10 @@ public class EnemyAI : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        print("hmmmmm");
-        if (other.CompareTag("Player"))
-            {
-            print("You are hitting the player at the moment");
-        }
-
         if (other.CompareTag("Bullet"))
         {
             health -= bulletDMG;
+            Destroy(other.gameObject);
         }
     }
 
