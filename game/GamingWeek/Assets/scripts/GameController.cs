@@ -9,49 +9,55 @@ public class GameController : MonoBehaviour
 
     public GameObject Player;
     public Text PlayerHP;
-
     public Text BulletsInGun;
+    
 
 
-    public static float Bullets;
-    public static float Health;
 
     public Transform HealthPlaceholder;
     public Transform BulletPlaceholder;
     public Transform AmountOfEnemies;
 
     private string playerHP;
+    private string bulletsInGun;
+    private float Ammo;
+    private float Health;
 
     public void Awake()
     {
         // This is for showing the amount of remaining bullets in the gun
-        string bulletsGun = BulletsInGun.text;
-        Bullets = float.Parse(bulletsGun);
-        BulletPlaceholder.GetComponent<Text>().text = Bullets.ToString();
 
         // This is for showing the players hp
-        playerHP = PlayerHP.text;
-        Health = float.Parse(playerHP);
-        HealthPlaceholder.GetComponent<Text>().text = "" + Health;
     }
 
     public void Update()
     {
+        playerHP = PlayerHP.text;
+        Health = float.Parse(playerHP);
+        HealthPlaceholder.GetComponent<Text>().text = "" + Health;
+
+            bulletsInGun = BulletsInGun.text;
+            Ammo = float.Parse(bulletsInGun);
+
+
         float Enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
         AmountOfEnemies.GetComponent<Text>().text = "" + Enemies;
 
         HealthPlaceholder.GetComponent<Text>().text = "" + Health;
 
-        if (Input.GetButtonDown("Fire1") && Bullets > 0)
+        BulletPlaceholder.GetComponent<Text>().text = "" + Ammo;
+        if (Input.GetButtonDown("Fire1") && Ammo > 0)
         {
-            Bullets -= 1;
-            BulletPlaceholder.GetComponent<Text>().text = Bullets.ToString();
+
+            Ammo -= 1;
+            print(Ammo);
+            BulletsInGun.GetComponent<Text>().text = "" + Ammo;
             Health -= 10;
 
         }
-        else if (Bullets == 0)
+        else if (Ammo == 0)
         {
-            BulletPlaceholder.GetComponent<Text>().text = "Bullets: Out of ammo!";
+            BulletPlaceholder.GetComponent<Text>().text = "Out of ammo!";
         }
 
     }

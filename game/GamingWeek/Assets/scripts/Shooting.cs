@@ -8,23 +8,25 @@ public class Shooting : MonoBehaviour
 
     public Text AmountOfBullets;
     public Transform firePoint;
+    public GameObject bulletPrefab;
+
     public float bulletForce = 20f;
 
-    public GameObject bulletPrefab;
 
 
     private float BulletCount;
     // Start is called before the first frame update
     void Start()
     {
-        string bulletsInGun = AmountOfBullets.text;
-        BulletCount = float.Parse(bulletsInGun);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        string bulletsInGun = AmountOfBullets.text;
+        BulletCount = float.Parse(bulletsInGun);
+
+        if (Input.GetButtonDown("Fire1") && BulletCount > 0)
         {
             Shoot();
         }

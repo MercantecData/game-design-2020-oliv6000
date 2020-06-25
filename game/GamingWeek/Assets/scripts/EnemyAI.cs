@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour
         public float attackSpeed = 8;
         public float range = 15;
 
+        public Animator anime;  
 
         public LayerMask mask;
 
@@ -27,13 +28,11 @@ public class EnemyAI : MonoBehaviour
         private Transform nextWaypoint;
     
 
-    //Video controll
     public Transform player;
     private Rigidbody2D rb;
-    private Vector2 movement;
     private float bulletDMG;
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +41,9 @@ public class EnemyAI : MonoBehaviour
 
         nextWaypoint = waypoint1;
         rb = this.GetComponent<Rigidbody2D>();
+
+        anime = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -49,6 +51,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (health <= 0)
         {
+            // Destroys enemy
             Destroy(gameObject);
         }
 
@@ -58,7 +61,6 @@ public class EnemyAI : MonoBehaviour
         {
             patrol();
         }
-        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -67,6 +69,7 @@ public class EnemyAI : MonoBehaviour
         {
             health -= bulletDMG;
             Destroy(other.gameObject);
+            anime.Play("animation");
         }
     }
 
