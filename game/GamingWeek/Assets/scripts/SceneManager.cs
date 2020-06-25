@@ -42,7 +42,7 @@ public class SceneManager : MonoBehaviour
             Quit = true;
         }
 
-        if (Enemies <= 0 && Quit == true)
+        if (Enemies <= 0)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryMenu");
         }

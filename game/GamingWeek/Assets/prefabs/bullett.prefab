@@ -145,4 +145,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 1655902075636475560, guid: ad2ddedd1f1b41341972d59630cdf5cf,
     type: 3}
-  Enemy: {fileID: 0}

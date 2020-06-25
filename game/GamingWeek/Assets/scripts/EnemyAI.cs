@@ -113,7 +113,7 @@ public class EnemyAI : MonoBehaviour
             tooClose = false;
         }
 
-        if (Vector3.Distance(targetLocation, transform.position) < 0.9)
+        if (Vector3.Distance(targetLocation, transform.position) < 0.8)
         {
             tooClose = true;
         }
