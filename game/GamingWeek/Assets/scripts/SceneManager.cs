@@ -39,7 +39,6 @@ public class SceneManager : MonoBehaviour
 
         if (Input.GetKeyDown("return") && Enemies <= 0)
         {
-            print("Enter pressed");
             Quit = true;
         }
 

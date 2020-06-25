@@ -50,7 +50,6 @@ public class GameController : MonoBehaviour
         {
 
             Ammo -= 1;
-            print(Ammo);
             BulletsInGun.GetComponent<Text>().text = "" + Ammo;
             Health -= 10;
 

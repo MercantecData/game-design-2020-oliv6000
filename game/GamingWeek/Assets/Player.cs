@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(BulletsInGun);
         string bulletsInGun = BulletsInGun.text;
         Ammo = float.Parse(bulletsInGun);
     }
@@ -31,7 +30,6 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        print(other.gameObject.tag);
         if (other.CompareTag("AmmoCrate"))
         {
             ammoInCrate = AmmoInCrate.text;
@@ -40,10 +38,6 @@ public class Player : MonoBehaviour
             Ammo += AmmoCrateValue;
             Destroy(other.gameObject);
             BulletsInGun.GetComponent<Text>().text = "" + Ammo;
-            
-            //health -= bulletDMG;
-            //Destroy(other.gameObject);
-            //anime.Play("animation");
         }
     }
 }

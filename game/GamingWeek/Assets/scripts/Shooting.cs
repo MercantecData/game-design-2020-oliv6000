@@ -36,7 +36,6 @@ public class Shooting : MonoBehaviour
 
     void Shoot()
     {
-
         if (BulletCount > 0)
         {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -45,10 +44,6 @@ public class Shooting : MonoBehaviour
 
             Destroy(bullet, 2f);
             BulletCount -= 1;
-        }
-        else
-        {
-            print("You ain't got no more ammo");
         }
     }
 }
