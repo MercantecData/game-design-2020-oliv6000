@@ -48,11 +48,8 @@ public class GameController : MonoBehaviour
         BulletPlaceholder.GetComponent<Text>().text = "" + Ammo;
         if (Input.GetButtonDown("Fire1") && Ammo > 0)
         {
-
             Ammo -= 1;
             BulletsInGun.GetComponent<Text>().text = "" + Ammo;
-            Health -= 10;
-
         }
         else if (Ammo == 0)
         {

@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
 
     private AudioSource audioSource;
 
+    public float DMGCooldown = 1;
+    private float Timer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,20 +33,30 @@ public class Player : MonoBehaviour
 
         string bulletsInGun = BulletsInGun.text;
         Ammo = float.Parse(bulletsInGun);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        
         enemyDMG = EnemyDMG.text;
         enemyDamage = float.Parse(enemyDMG);
 
         playerHP = PlayerHP.text;
         playerHealth = float.Parse(playerHP);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
         string bulletsInGun = BulletsInGun.text;
         Ammo = float.Parse(bulletsInGun);
 
+
+        if (Timer > 0)
+        {
+            Timer -= Time.deltaTime;
+        }
+        else if (Timer <= 0)
+        {
+            Timer = 0;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -59,13 +72,15 @@ public class Player : MonoBehaviour
             BulletsInGun.GetComponent<Text>().text = "" + Ammo;
         }
 
-
         // IT WORKS, BUT HEALTH DOES NOT GET SUBTRACTED NOR DOES THE TEXT UPDATE
         if (other.CompareTag("Enemy"))
         {
-            print("hello?");
-            PlayerHP.GetComponent<Text>().text = "" + playerHealth;
-            playerHealth -= enemyDamage;
+            if (Timer == 0)
+            {
+                playerHealth -= enemyDamage;
+                PlayerHP.GetComponent<Text>().text = "" + playerHealth;
+                Timer = DMGCooldown;
+            }
         }
     }
 }

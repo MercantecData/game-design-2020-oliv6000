@@ -4055,6 +4055,11 @@ PrefabInstance:
       propertyPath: PlayerHP
       value: 
       objectReference: {fileID: 1143330349}
+    - target: {fileID: 4778456080959016402, guid: 151ee0a35d8b539418cb9eef09e18b87,
+        type: 3}
+      propertyPath: DMGCooldown
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7977074864165408098, guid: 151ee0a35d8b539418cb9eef09e18b87,
         type: 3}
       propertyPath: m_Name
