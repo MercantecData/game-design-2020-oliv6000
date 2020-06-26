@@ -31,12 +31,6 @@ public class SceneManager : MonoBehaviour
         string CountEnemies = EnemiesCount.text;
         Enemies = float.Parse(CountEnemies);
 
-        if(Enemies <= 0)
-        {
-            VictoryText.text = "Victory";
-            AditionalVictoryText.text = "Press enter to continue";
-        }
-
         if (Input.GetKeyDown("return") && Enemies <= 0)
         {
             Quit = true;

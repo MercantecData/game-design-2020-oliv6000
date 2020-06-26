@@ -101,8 +101,8 @@ MonoBehaviour:
   damage: 5
   moveSpeed: 5
   patrolSpeed: 5
-  attackSpeed: 8
-  range: 7.64
+  attackSpeed: 8.5
+  range: 8.5
   anime: {fileID: -1579507358896374759}
   mask:
     serializedVersion: 2
